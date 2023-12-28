@@ -101,9 +101,14 @@ input[type="checkbox"] {
 button {
     padding: 10px 8px;
     width: 90%;
-    background-color: blue;
+    background-color: #005CC8;
     border: none;
     color: #fff;
     border-radius: 4px;
     cursor: pointer;
+}
+
+.checkbox-container.selected .checkbox-label {
+    color: #005CC8;
+    /* Change this to the desired color */
 }

@@ -13,14 +13,14 @@ const Multiselect: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
 
-  
+
   useEffect(() => {
     const storedSelectedCategories = localStorage.getItem('selectedCategories');
     if (storedSelectedCategories) {
       setSelectedCategories(JSON.parse(storedSelectedCategories));
     }
   }, []);
-  
+
   if (isLoading) {
     return <div>Loading...</div>;
   }
@@ -28,7 +28,7 @@ const Multiselect: React.FC = () => {
   if (isError || !data) {
     return <div>Error loading data</div>;
   }
-  
+
   const handleCheckboxChange = (category: string) => {
     const newSelectedCategories = [...selectedCategories];
 
@@ -77,14 +77,17 @@ const Multiselect: React.FC = () => {
         <ul>
           {sortedCategories.map((category, index) => (
             <li key={`${category}-${index}`}>
-              <div className='checkbox-container'>
+              <div className={
+                `checkbox-container ${selectedCategories.includes(category) ? 'selected' : ''}`}>
                 <input
                   type='checkbox'
                   id={`checkbox-${category}-${index}`}
                   checked={selectedCategories.includes(category)}
                   onChange={() => handleCheckboxChange(category)}
                 />
-                <label htmlFor={`checkbox-${category}-${index}`} className='checkbox-label'>
+                <label
+                  htmlFor={`checkbox-${category}-${index}`}
+                  className={`checkbox-label ${selectedCategories.includes(category) ? 'selected-label' : ''}`}>
                   {category}
                 </label>
               </div>
